@@ -27,8 +27,18 @@ class TaskController{
             return res.json({ success: false, error: err.name });
         }
     }
-    removeTask(req, res){
-        res.send('Eliminar Tareas');
+    async removeTask(req, res){
+        const taskToken = req.body.taskToken;
+        try{
+            await Task.destroy({ where:{
+                taskToken: taskToken
+            }})
+            res.statusCode = 200;
+            return res.json({ success: true, error: err.name })
+        }catch(err){
+            res.statusCode = 409;
+            return res.json({ success:false, error: err.name });
+        }
     }
 }
 
