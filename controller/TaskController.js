@@ -34,7 +34,7 @@ class TaskController{
                 taskToken: taskToken
             }})
             res.statusCode = 200;
-            return res.json({ success: true, error: err.name })
+            return res.json({ success: true, data: "Información borrada correctamente" });
         }catch(err){
             res.statusCode = 409;
             return res.json({ success:false, error: err.name });
